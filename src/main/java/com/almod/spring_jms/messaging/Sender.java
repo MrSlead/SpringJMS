@@ -21,8 +21,9 @@ public class Sender {
         jmsTemplate.send(destination,
                 session -> {
                     TextMessage message = session.createTextMessage();
+                    message.setJMSType("STRING");
                     message.setText("Text " + i);
-                    LOG.info("The sent message: "+ message.getText());
+                    LOG.debug("The sent message: "+ message.getText());
 
                     return message;
                 }

@@ -18,8 +18,8 @@ public class Receiver {
     @JmsListener(destination = "${spring.activemq.destination}")
     public void receive(TextMessage textMessage) {
         try {
-            LOG.info("The received message: " + textMessage.getText());
-            jmsRepo.test();
+            LOG.debug("The received message: " + textMessage.getText());
+            jmsRepo.writeInDB(textMessage);
         } catch (JMSException e) {
             LOG.error(e.getMessage());
         }
